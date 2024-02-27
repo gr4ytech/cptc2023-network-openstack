@@ -74,13 +74,16 @@ data "openstack_images_image_v2" "kali" {
   name_regex = "^[Kk]ali(?: \\d{4}\\.\\d)?$"
 }
 
-data "openstack_compute_flavor_v2" "instance-flavor" {
+data "openstack_compute_flavor_v2" "windows-flavor" {
 # For this network I would choose a flavor size with 2 vcpu and 4GB of ram minimum
-# Our m1.large flavor has 2 vcpu and 4GB of ram
+# Our m1.large flavor has 2 vcpu and 4GB of ram for windows boxes
   name = "m1.large"
 }
 
-data "openstack_compute_flavor_v2" "kali-flavor" {
+data "openstack_compute_flavor_v2" "linux-flavor" {
+# Our network also uses linux boxes, these require less resources to run overall
+# which makes the footprint of the network smaller. 
+# Our m1.small flavor has 1 vcpu and 1GB of ram
   name = "m1.small"
 }
 
